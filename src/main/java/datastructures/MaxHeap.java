@@ -78,7 +78,7 @@ public class MaxHeap {
         int left = key * 2;
         int right = key * 2 + 1;
         int largest = key;
-        
+
         if (left < end && heap[left] > heap[largest])
             largest = left;
         if (right < end && heap[right] > heap[largest])
