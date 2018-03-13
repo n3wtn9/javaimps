@@ -10,12 +10,12 @@ public class MaxHeap {
 
     public MaxHeap(int size) {
         this.size = size;
-        this.heap = new int[size];
+        this.heap = new int[size + 1];
         this.end = 1;
     }
 
     void insert(int data) {
-        if (end >= size) return;
+        if (end >= size + 1) return;
 
         heap[end] = data;
         end++;
@@ -35,8 +35,15 @@ public class MaxHeap {
     int getMax() { return heap[1]; }
 
     int extractMax() {
-        int max = heap[1];
+        if (end == 1) {
+            return Integer.MAX_VALUE;
+        }
+        if (end - 1 == 1) {
+            end--;
+            return heap[1];
+        }
 
+        int max = heap[1];
         heap[1] = heap[end - 1];
         end--;
         this.heapifyDown(1);
@@ -59,37 +66,28 @@ public class MaxHeap {
     }
 
     void heapifyUp(int key) {
-        while (key > 1) {
-            int parent = key / 2;
-            if (heap[key] > heap[parent]) {
-                int tmp = heap[parent];
-                heap[parent] = heap[key];
-                heap[key] = tmp;
-                key = parent;
-            } else {
-                break;
-            }
+        int parent = key / 2;
+        while (key > 1 && heap[key] > heap[parent]) {
+            this.swap(key, parent);
+            key = parent;
+            parent = key / 2;
         }
     }
 
     void heapifyDown(int key) {
         int left = key * 2;
         int right = key * 2 + 1;
+        int largest = key;
 
         if (left >= end && right >= end) return;
 
-        if (left < end && right >= end) {
-            if (heap[left] > heap[key])
-                this.swap(key, left);
-            return;
-        }
-
-        if (heap[left] > heap[right] && heap[left] > heap[key]) {
-            this.swap(key, left);
-            heapifyDown(left);
-        } else if (heap[right] > heap[key]) {
-            this.swap(key, right);
-            heapifyDown(right);
+        if (left < end && heap[left] > heap[largest])
+            largest = left;
+        if (right < end && heap[right] > heap[largest])
+            largest = right;
+        if (largest != key) {
+            this.swap(key, largest);
+            this.heapifyDown(largest);
         }
     }
 
