@@ -1,10 +1,10 @@
 package datastructures;
 
 public class LinkedList<E> {
-    E val;
+    E data;
     LinkedList<E> next;
 
-    public LinkedList(E val) {
-        this.val = val;
+    public LinkedList(E data) {
+        this.data = data;
     }
 }

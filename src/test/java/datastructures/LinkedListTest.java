@@ -8,7 +8,7 @@ public class LinkedListTest {
 
         LinkedList<Integer> node = root;
         do {
-            System.out.println(node.val);
+            System.out.println(node.data);
             node = node.next;
         } while(node != null);
     }
