@@ -1,5 +1,9 @@
 package datastructures;
 
+/**
+ * FIFO
+ * @param <E>
+ */
 public class Stack<E> {
     Node<E> top;
 
@@ -8,8 +12,8 @@ public class Stack<E> {
             E data = top.data;
             top = top.next;
             return data;
-        } else
-            return null;
+        }
+        return null;
     }
 
     void push(E data) {
@@ -21,8 +25,8 @@ public class Stack<E> {
     E peek() {
         if (top != null) {
             return top.data;
-        } else
-            return null;
+        }
+        return null;
     }
 
     static class Node<E> {
