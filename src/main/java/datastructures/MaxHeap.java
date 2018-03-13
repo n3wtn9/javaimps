@@ -9,13 +9,13 @@ public class MaxHeap {
     int end;
 
     public MaxHeap(int size) {
-        this.size = size;
-        this.heap = new int[size + 1];
+        this.size = size + 1; // using 1 base indexing
+        this.heap = new int[this.size];
         this.end = 1;
     }
 
     void insert(int data) {
-        if (end >= size + 1) return;
+        if (end >= size) return;
 
         heap[end] = data;
         end++;
@@ -78,9 +78,7 @@ public class MaxHeap {
         int left = key * 2;
         int right = key * 2 + 1;
         int largest = key;
-
-        if (left >= end && right >= end) return;
-
+        
         if (left < end && heap[left] > heap[largest])
             largest = left;
         if (right < end && heap[right] > heap[largest])
