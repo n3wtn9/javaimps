@@ -131,9 +131,19 @@ public class BinarySearchTree {
             return n;
     }
 
-    void leftRotate() {}
+    void rotateLeft() {
+        Node tmp = root.right;
+        root.right = root.right.left;
+        tmp.left = root;
+        root = tmp;
+    }
 
-    void rightRotate() {}
+    void rotateRight() {
+        Node tmp = root.left;
+        root.left = root.left.right;
+        tmp.right = root;
+        root = tmp;
+    }
 
     static class Node {
         int key;
