@@ -87,7 +87,7 @@ public class BinarySearchTree {
     void delete(Node n) {
         if (n.left == null) {
             transplant(n, n.right);
-        } else if (n.left != null) {
+        } else if (n.right == null) {
             transplant(n, n.left);
         } else {
             Node min = minimum(n.right);
@@ -117,7 +117,19 @@ public class BinarySearchTree {
             v.parent = u.parent;
     }
 
-    Node trim(Node n, int low, int high) {}
+    Node trim(Node n, int low, int high) {
+        if (n == null) return null;
+
+        n.left = trim(n.left, low, high);
+        n.right = trim(n.right, low, high);
+
+        if (n.key < low)
+            return n.right;
+        else if (n.key > high)
+            return n.left;
+        else
+            return n;
+    }
 
     void leftRotate() {}
 
