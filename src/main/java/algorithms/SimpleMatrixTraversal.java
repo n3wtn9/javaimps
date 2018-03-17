@@ -2,8 +2,6 @@ package algorithms;
 
 import java.util.*;
 
-import static java.util.Collections.emptyList;
-
 public class SimpleMatrixTraversal {
     static class Point {
         int x,y;
